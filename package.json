@@ -8,9 +8,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "oh-vue-icons": "^1.0.0-rc3",
     "vue": "^3.3.4",
     "vue-icon": "^2.3.0",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.0.13"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
