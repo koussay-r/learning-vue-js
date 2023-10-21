@@ -21,7 +21,7 @@
       <img @mouseover="handleChangeChaussetteToGreen" :src="greenCircle" class="w-[60px] mt-3 " />
       <img @mouseover="handleChangeChaussetteToBlue" :src="blueCircle" class="w-[60px] mt-3 " />
 
-      <button v-if="handleOutOfStock==true" @click="handleAddToCart" class=" bg-blue-700 text-white p-4 mt-3 font-bold rounded">Add To Cart</button>
+      <button v-if="handleOutOfStock==true" @click="handleAddToCart" class=" active:bg-opacity-80 bg-blue-700 text-white p-4 mt-3 font-bold rounded">Add To Cart</button>
       <button v-else class=" bg-slate-300 cursor-not-allowed text-white p-4 mt-3 font-bold rounded">Add To Cart</button>
 
     </div>
