@@ -32,7 +32,7 @@
         </div>
     </div>
 </template>
-<script setup>
+<script >
 import cart from "./../assets/icons8-cart.gif"
 import black from './../assets/Ellipse 3.png'
 import blue from "./../assets/Ellipse 4.png"
@@ -40,11 +40,17 @@ import red from "./../assets/Ellipse 5.png"
 import white from "./../assets/Ellipse 2.png"
 import green from "./../assets/Ellipse 7.png"
 import AllColors from "./../assets/Ellipse 1.png"
- import {ref} from "vue"
-const first = ref("first")
- const handle=()=>{
-    console.log(first);
-    first._rawValue="seconde"
-    alert(first._rawValue);
+ export default{
+    data(){
+        return {
+            cart:cart,
+            black:black,
+            blue:blue,
+            white:white,
+            AllColors:AllColors,
+            red:red,
+            green:green,
+        }
+    }
  }
 </script>
