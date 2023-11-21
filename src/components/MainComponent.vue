@@ -1,34 +1,46 @@
 <template>
-    <div class="w-full">
+    <div class="">
         <div class="p-5">
             <p class="font-bold text-[23px]">Recommended</p>
             <div class="flex mt-4 gap-2">
-                <p class="border-2 cursor-pointer hover:bg-gray-100 rounded-md p-3 " >All Products</p>
+                <p @click="ChooseCompanyNAme('')" class="border-2 cursor-pointer hover:bg-gray-100 rounded-md p-3 " >All Products</p>
                 <p @click="ChooseCompanyNAme('Nike')"  class="border-2 cursor-pointer hover:bg-gray-100 rounded-md p-3 " >Nike</p>
                 <p @click="ChooseCompanyNAme('Adidas')"  class="border-2 cursor-pointer hover:bg-gray-100 rounded-md p-3 " >Adidas</p>
                 <p @click="ChooseCompanyNAme('Puma')"  class="border-2 cursor-pointer hover:bg-gray-100 rounded-md p-3 " >Puma</p>
                 <p @click="ChooseCompanyNAme('Vans')"  class="border-2 cursor-pointer hover:bg-gray-100 rounded-md p-3 " >Vans</p>
             </div>
         </div>
-        <div>
-
+        <div class="grid border-l-transparent h-[520px] xl:grid-cols-4 sm:grid-cols-2 pb-2 grid-cols-1 mx-auto md:grid-cols-3  2xl:grid-cols-5 p-3 gap-2 w-full overflow-auto border">
+                <ShoesCard v-for="item in ShoesData" :picture="item.img" :name="item.title" :currentPrice="item.newPrice" :RecentPrice="item.prevPrice" :reviews="item.reviews" ></ShoesCard>
         </div>
     </div>
 </template>
 <script>
 import data from "./../data/data.js"
+import ShoesCard from "./ShoesCard.vue"
 export default{
     data(){
         return{
-            Search:"",
             ShoesData:data,
         }
     },
     methods:{
         ChooseCompanyNAme(e){
-            this.Search=e;
-            console.log(this.Search)
+            if(e==''){
+                this.ShoesData=data
+            }
+            else{
+                this.ShoesData=[]
+                for(var i=0;i<data.length;i++){
+                    if(data[i].company.includes(e)){
+                        this.ShoesData.push(data[i])
+                    }
+                }
+            }
         }
+    },
+    components:{
+        ShoesCard:ShoesCard
     }
 }
 </script>
