@@ -19,28 +19,32 @@
 import data from "./../data/data.js"
 import ShoesCard from "./ShoesCard.vue"
 export default{
+    inject: ['appContext'],
     data(){
         return{
             ShoesData:data,
+            contextName:this.appContext.name
         }
     },
     methods:{
         ChooseCompanyNAme(e){
-            if(e==''){
-                this.ShoesData=data
-            }
-            else{
-                this.ShoesData=[]
-                for(var i=0;i<data.length;i++){
-                    if(data[i].company.includes(e)){
-                        this.ShoesData.push(data[i])
+                if(e==''){
+                    this.ShoesData=data
+                }
+                else{
+                    this.ShoesData=[]
+                    for(var i=0;i<data.length;i++){
+                        if(data[i].company.includes(e)){
+                            this.ShoesData.push(data[i])
+                        }
                     }
                 }
             }
-        }
+        
     },
     components:{
         ShoesCard:ShoesCard
-    }
+    },
+
 }
 </script>
