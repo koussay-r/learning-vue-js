@@ -22,12 +22,12 @@
             </ul>
             <p class="text-center  pt-3 text-[22px]">Colors</p>
             <ul class="flex  mx-auto pt-3 gap-2 flex-col-reverse">
-                <li class="flex ml-16"> <img :src="white" class="mr-3 pt-[1px] w-[22px] h-[22px] "/>White</li>
-                <li class="flex ml-16"> <img :src="green" class="mr-3 pt-[1px] w-[22px] h-[22px] "/>Green</li>
-                <li class="flex ml-16"> <img :src="red" class="mr-3 pt-[1px] w-[22px] h-[22px] "/>Red</li>
-                <li class="flex ml-16"> <img :src="blue" class="mr-3 pt-[1px] w-[22px] h-[22px] "/>Blue</li>
-                <li class="flex ml-16"> <img :src="black" class="mr-3 pt-[1px] w-[22px] h-[22px] "/>Black</li>
-                <li class="flex ml-16"> <img :src="AllColors" class="mr-3 pt-[1px] w-[22px] h-[22px] "/> All</li>
+                <li @click="handleColor('white')" class=" cursor-pointer flex ml-16"> <img :src="white" class="mr-3 pt-[1px] w-[22px] h-[22px] "/>White</li>
+                <li @click="handleColor('green')" class=" cursor-pointer flex ml-16"> <img :src="green" class="mr-3 pt-[1px] w-[22px] h-[22px] "/>Green</li>
+                <li @click="handleColor('red')" class=" cursor-pointer flex ml-16"> <img :src="red" class="mr-3 pt-[1px] w-[22px] h-[22px] "/>Red</li>
+                <li @click="handleColor('blue')" class=" cursor-pointer flex ml-16"> <img :src="blue" class="mr-3 pt-[1px] w-[22px] h-[22px] "/>Blue</li>
+                <li @click="handleColor('black')" class=" cursor-pointer flex ml-16"> <img :src="black" class="mr-3 pt-[1px] w-[22px] h-[22px] "/>Black</li>
+                <li @click="handleColor('')" class=" cursor-pointer flex ml-16"> <img :src="AllColors" class="mr-3 pt-[1px] w-[22px] h-[22px] "/> All</li>
             </ul>
         </div>
     </div>
@@ -51,6 +51,12 @@ import AllColors from "./../assets/Ellipse 1.png"
             red:red,
             green:green,
         }
+    },
+    inject: ['appContext'],
+  methods:{
+    handleColor(e){
+        this.appContext.name=e    
     }
+  }
  }
 </script>

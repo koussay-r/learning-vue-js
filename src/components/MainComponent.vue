@@ -26,22 +26,24 @@ export default{
             contextName:this.appContext.name
         }
     },
+    
     methods:{
         ChooseCompanyNAme(e){
                 if(e==''){
                     this.ShoesData=data
                 }
                 else{
-                    this.ShoesData=[]
-                    for(var i=0;i<data.length;i++){
-                        if(data[i].company.includes(e)){
-                            this.ShoesData.push(data[i])
-                        }
-                    }
+                    this.ShoesData = data.filter(item => item.company.includes(e)||item.title.includes(e)||item.color==(e));
                 }
             }
         
     },
+    watch: {
+    'appContext.name': function(newVal, oldVal) {
+        console.log(newVal)
+      this.ChooseCompanyNAme(newVal);
+    }
+  },
     components:{
         ShoesCard:ShoesCard
     },

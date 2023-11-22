@@ -23,15 +23,9 @@ export default{
         }
     },
     inject: ['appContext'],
-    computed: {
-    contextName() {
-      return this.appContext.name;
-    },
-  },
   methods:{
     input(e){
-        this.appContext=e.target.value
-        
+        this.appContext.name=e.target.value     
     }
   }
 }
