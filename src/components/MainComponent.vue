@@ -23,7 +23,6 @@ export default{
     data(){
         return{
             ShoesData:data,
-            contextName:this.appContext.name
         }
     },
     
@@ -35,6 +34,9 @@ export default{
                 else{
                     this.ShoesData = data.filter(item => item.company.includes(e)||item.title.includes(e)||item.color==(e));
                 }
+            },
+            ChooseBestPriceAndBrand(e){
+
             }
         
     },
@@ -42,6 +44,9 @@ export default{
     'appContext.name': function(newVal, oldVal) {
         console.log(newVal)
       this.ChooseCompanyNAme(newVal);
+    },
+    'appContext': function(newVal, oldVal) {
+        console.log(newVal)
     }
   },
     components:{
