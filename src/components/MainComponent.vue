@@ -23,6 +23,9 @@ export default{
     data(){
         return{
             ShoesData:data,
+            brand:"",
+            minPrice:0,
+            maxPrice:0,
         }
     },
     
@@ -35,8 +38,35 @@ export default{
                     this.ShoesData = data.filter(item => item.company.includes(e)||item.title.includes(e)||item.color==(e));
                 }
             },
-            ChooseBestPriceAndBrand(e){
-
+            ChooseBestPriceAndBrand(){
+                if(this.brand=="" && this.maxPrice==0){
+                    this.ShoesData=data
+                }
+                else{
+                    if(this.brand==""){
+                        this.ShoesData=[]
+                        let i=0;
+                        for (let index = 0; index < data.length; index++) {
+                            if(this.minPrice<=data[index].newPrice&&data[index].newPrice<=this.maxPrice){
+                                console.log(this.minPrice,this.maxPrice,data[index].newPrice)
+                                this.ShoesData[i]=data[index]
+                                i++
+                            }
+                        }
+                    
+                    }
+                    else{
+                        this.ShoesData=[]
+                        let i=0;
+                        for (let index = 0; index < data.length; index++) {
+                            if(this.minPrice<=data[index].newPrice&&data[index].newPrice<=this.maxPrice&&data[index].category==this.brand){
+                                console.log(this.minPrice,this.maxPrice,data[index].newPrice)
+                                this.ShoesData[i]=data[index]
+                                i++
+                            }
+                        }
+                    }
+                }
             }
         
     },
@@ -45,9 +75,16 @@ export default{
         console.log(newVal)
       this.ChooseCompanyNAme(newVal);
     },
-    'appContext': function(newVal, oldVal) {
-        console.log(newVal)
-    }
+    'appContext.brand': function(newVal, oldVal) {
+        this.brand=newVal;
+    },
+    'appContext.minPrice': function(newVal,oldVal){
+        this.minPrice=newVal
+    },
+    'appContext.maxPrice': function(newVal,oldVal){
+        this.maxPrice=newVal
+        this.ChooseBestPriceAndBrand()
+    },
   },
     components:{
         ShoesCard:ShoesCard

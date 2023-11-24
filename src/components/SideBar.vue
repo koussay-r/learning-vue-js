@@ -6,19 +6,19 @@
         <div class="h-[100vh] border-2">
             <p  class="text-center  pt-3 text-[22px]">Category</p>
             <ul class="flex  mx-auto pt-3 flex-col-reverse">
-                <li class="ml-16"> <input  class="mr-3" name="option" type="radio"  >Heels</li>
-                <li class="ml-16"> <input  class="mr-3" name="option" type="radio"  >Sandals</li>
-                <li class="ml-16"> <input  class="mr-3" name="option" type="radio"  >Flats</li>
-                <li class="ml-16"> <input  class="mr-3" name="option" type="radio"  >Sneakers</li>
-                <li class="ml-16"> <input class="mr-3" name="option" type="radio"  > All</li>
+                <li class="ml-16"> <input @click="ChooseBrand('heels')"  class="mr-3" name="option" type="radio"  >Heels</li>
+                <li class="ml-16"> <input @click="ChooseBrand('sandals')"  class="mr-3" name="option" type="radio"  >Sandals</li>
+                <li class="ml-16"> <input @click="ChooseBrand('flats')"  class="mr-3" name="option" type="radio"  >Flats</li>
+                <li class="ml-16"> <input @click="ChooseBrand('sneakers')"  class="mr-3" name="option" type="radio"  >Sneakers</li>
+                <li class="ml-16"> <input @click="ChooseBrand('')" class="mr-3" name="option" type="radio"  > All</li>
             </ul>
             <p class="text-center  pt-3 text-[22px]">Price</p>
             <ul class="flex  mx-auto pt-3 flex-col-reverse">
-                <li class="ml-16"> <input @click="choosePrice(150,400)"  class="mr-3" name="option2" type="radio"  >over $150</li>
-                <li class="ml-16"> <input class="mr-3" name="option2" type="radio"  >$100 - $150</li>
-                <li class="ml-16"> <input class="mr-3" name="option2" type="radio"  >$50 - $100</li>
-                <li class="ml-16"> <input  class="mr-3" name="option2" type="radio"  >$0 - $50</li>
-                <li class="ml-16"> <input class="mr-3" name="option2" type="radio"  > All</li>
+                <li class="ml-16"> <input @click="choosePrice(151,1000)"  class="mr-3" name="option2" type="radio"  >over $150</li>
+                <li class="ml-16"> <input @click="choosePrice(100,150)" class="mr-3" name="option2" type="radio"  >$100 - $150</li>
+                <li class="ml-16"> <input @click="choosePrice(50,100)" class="mr-3" name="option2" type="radio"  >$50 - $100</li>
+                <li class="ml-16"> <input @click="choosePrice(0,50)"  class="mr-3" name="option2" type="radio"  >$0 - $50</li>
+                <li class="ml-16"> <input @click="choosePrice(0,0)" class="mr-3" name="option2" type="radio"  > All</li>
             </ul>
             <p class="text-center  pt-3 text-[22px]">Colors</p>
             <ul class="flex  mx-auto pt-3 gap-2 flex-col-reverse">
@@ -57,7 +57,8 @@ import AllColors from "./../assets/Ellipse 1.png"
     handleName(e){
         this.appContext.name=e    
     },choosePrice(Minprice,MaxPrice){
-        this.appContext.data.minPrice=Minprice
+        this.appContext.minPrice=Minprice
+        this.appContext.maxPrice=MaxPrice
   },
 }
  }
