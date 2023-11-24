@@ -60,6 +60,9 @@ import AllColors from "./../assets/Ellipse 1.png"
         this.appContext.minPrice=Minprice
         this.appContext.maxPrice=MaxPrice
   },
+  ChooseBrand(e){
+    this.appContext.brand=e
+  }
 }
  }
 </script>
