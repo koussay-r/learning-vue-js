@@ -1,7 +1,7 @@
 <template>
     <div class="w-[25%]">
-        <div class="px-7 py-4  border-2 border-b-transparent">
-            <img :src="cart" class="w-[30px] block mx-auto h-[30px]"/>
+        <div @click="handleCloseOpen()" class="px-7 py-4  border-2 border-b-transparent">
+            <img  :src="cart" class="w-[30px] block mx-auto h-[30px]"/>
         </div>
         <div class="h-[100vh] border-2">
             <p  class="text-center  pt-3 text-[22px]">Category</p>
@@ -50,6 +50,7 @@ import AllColors from "./../assets/Ellipse 1.png"
             AllColors:AllColors,
             red:red,
             green:green,
+            
         }
     },
     inject: ['appContext'],
@@ -62,7 +63,15 @@ import AllColors from "./../assets/Ellipse 1.png"
   },
   ChooseBrand(e){
     this.appContext.brand=e
+  },
+  handleCloseOpen(){
+    
   }
+}
+,watch:{
+    'appContext.sidebar':function(newVal, oldVal){
+
+    }
 }
  }
 </script>

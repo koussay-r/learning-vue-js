@@ -8,6 +8,7 @@ const AppContext = reactive({
     brand:"",
     minPrice:0,
     maxPrice:0,
+    sidebar:0,
   });
 app.provide('appContext', AppContext);
 app.mount('#app');
