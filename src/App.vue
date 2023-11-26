@@ -1,10 +1,8 @@
 <template>
   <div class="flex">
-    <SideBar  v-if="sidebar==0" class="hidden bg-white lg:block"></SideBar>
-    <SideBar  v-if="sidebar==1" class=" bg-white absolute"></SideBar>
-    <SideBar  v-if="sidebar==2" class="hidden"></SideBar>
+    <SideBar @custom-event="handleCustomEvent" :sidebar="sidebar" :class="sidebar? 'absolute lg:relative bg-white': ' hidden bg-white lg:block' " ></SideBar>
     <div class="w-full">
-      <NavBar></NavBar>
+      <NavBar @custom-event="handleCustomEvent" :sidebar="sidebar"></NavBar>
       <MainComponent></MainComponent>
     </div>
   </div>
@@ -16,7 +14,7 @@ import MainComponent from './components/MainComponent.vue';
 export default{
   data(){
     return{
-      sidebar:0,
+      sidebar:false,
     }
   },
   components:{
@@ -24,9 +22,11 @@ export default{
     SideBar,
     MainComponent
   },
-  watch:{
-    'appContext.sidebar':function(newVal, oldVal){
-      this.sidebar=newVal}
+  methods:{
+  handleCustomEvent(data) {
+    console.log(data)
+      this.sidebar = data; 
+    }
   }
 }
 </script>

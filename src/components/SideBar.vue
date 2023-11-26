@@ -1,6 +1,6 @@
 <template>
-    <div class="w-[25%]">
-        <div @click="handleCloseOpen()" class="px-7 py-4  border-2 border-b-transparent">
+    <div class="lg:w-[25%] w-[45%]">
+        <div @click="handleCloseOpen" class="px-7 py-4  border-2 border-b-transparent">
             <img  :src="cart" class="w-[30px] block mx-auto h-[30px]"/>
         </div>
         <div class="h-[100vh] border-2">
@@ -50,6 +50,8 @@ import AllColors from "./../assets/Ellipse 1.png"
             AllColors:AllColors,
             red:red,
             green:green,
+            sidebar:false
+            
             
         }
     },
@@ -65,13 +67,9 @@ import AllColors from "./../assets/Ellipse 1.png"
     this.appContext.brand=e
   },
   handleCloseOpen(){
+    this.$emit('custom-event',this.sidebar);
     
   }
-}
-,watch:{
-    'appContext.sidebar':function(newVal, oldVal){
-
-    }
 }
  }
 </script>

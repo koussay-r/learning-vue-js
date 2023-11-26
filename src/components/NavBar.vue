@@ -1,10 +1,8 @@
 <template>
     <div class="flex py-3 border-2 border-b-2 border-t-transparent border-l-transparent border-r-transparent  w-full justify-around">
-        <div class="text-center block lg:hidden">
-   <button @click="handleOpenClose()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="button" data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" aria-controls="drawer-navigation">
-   Show navigation
-   </button>
-</div>
+        <button class="border-2 lg:hidden block px-3 py-1 rounded" @click="handleCloseOpen">
+            Open SideBar
+        </button>
         <div>
             <input @change="input" type="text" placeholder="Enter your Search Shoes" class="bg-gray-100 rounded text-black outline-none px-3 py-2 "/>
         </div>
@@ -25,6 +23,7 @@ export default{
             heart: heart,
             cart: cart,
             profile: profile,
+            sidebar:true
         }
     },
     inject: ['appContext'],
@@ -32,11 +31,10 @@ export default{
     input(e){
         this.appContext.name=e.target.value     
     },
-    handleOpenClose(){
-        let sideBar=document.getElementById("sidebar")
-        sideBar.style.display="block"
-        sideBar.style.position="absolute"
-    }
+    handleCloseOpen(){
+        console.log("hey")
+    this.$emit('custom-event',this.sidebar)
+  }
   }
 }
 </script>
