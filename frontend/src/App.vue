@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="flex ">
     <SideBar @custom-event="handleCustomEvent" :sidebar="sidebar" :class="sidebar? 'absolute lg:relative bg-white': ' hidden bg-white lg:block' " ></SideBar>
     <div class="w-full">
       <NavBar @custom-event="handleCustomEvent" :sidebar="sidebar"></NavBar>

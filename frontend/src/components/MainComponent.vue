@@ -10,7 +10,7 @@
                 <p @click="ChooseCompanyNAme('Vans')"  class="border-2 cursor-pointer hover:bg-gray-100 rounded-md p-3 " >Vans</p>
             </div>
         </div>
-        <div  v-if="ShoesData.length==0">
+        <div  v-if="loading">
             <div role="status">
 <svg aria-hidden="true" class=" mt-[15%] block mx-auto w-16 h-10text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
@@ -18,7 +18,11 @@
 </svg>
 <span class="sr-only">Loading...</span>
 </div>
-        </div>    
+        </div> 
+        <div v-else-if="ShoesData.length==0&&!loading">
+            <p class="text-center text-[50px] mt-3">No data found !!</p>
+            <img  class="block mx-auto" :src="nodata" alt="no data found" />  
+        </div>
         <div v-else class="grid border-l-transparent h-[520px] xl:grid-cols-4 sm:grid-cols-2 pb-2 grid-cols-1 mx-auto md:grid-cols-3  2xl:grid-cols-5 p-3 gap-2 w-full overflow-auto border">
             <ShoesCard  v-for="item in ShoesData" :picture="item.img" :name="item.title" :currentPrice="item.newPrice" :RecentPrice="item.prevPrice" :reviews="item.reviews" ></ShoesCard>
         </div>
@@ -26,6 +30,7 @@
 </template>
 <script>
 import ShoesCard from "./ShoesCard.vue"
+import nodata from "./../assets/sammy-line-no-connection.gif"
 import axios from "axios"
 export default{
     inject: ['appContext'],
@@ -36,11 +41,15 @@ export default{
             brand:"",
             minPrice:0,
             maxPrice:0,
+            nodata:nodata,
+            loading:false,
         }
     },
    async mounted(){
     try {
+        this.loading=true;
         const data = await axios.get("http://localhost:9000")
+        this.loading=false;
         this.ShoesData=data.data
         this.wholeData=data.data
     } catch (error) {
@@ -106,7 +115,8 @@ export default{
     },
   },
     components:{
-        ShoesCard:ShoesCard
+        ShoesCard:ShoesCard,
+        
     },
 
 }

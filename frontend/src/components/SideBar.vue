@@ -1,5 +1,5 @@
 <template>
-    <div class="lg:w-[25%] w-[45%]">
+    <div class="lg:w-[25%] z-50 w-[45%]">
         <div @click="handleCloseOpen" class="px-7 py-4  border-2 border-b-transparent">
             <img  :src="cart" class="w-[30px] block mx-auto h-[30px]"/>
         </div>
