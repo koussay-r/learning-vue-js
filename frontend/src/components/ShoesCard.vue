@@ -22,15 +22,42 @@ export default{
         return{
             check:check,
             add:add,
-            added:false
+            AddedShoes:localStorage.getItem("AddedShoes")==null?[]:JSON.parse(localStorage.getItem("AddedShoes")),
+            added:localStorage.getItem("AddedShoes")==null?false:(JSON.parse(localStorage.getItem("AddedShoes")).includes(this._id)?true:false),
         }
     },
+    computed:{
+        addedshoees(){
+            return this.AddedShoes=localStorage.getItem("AddedShoes")==null?[]:JSON.parse(localStorage.getItem("AddedShoes"))
+        }
+    }
+    ,
     methods:{
         Add(){
             this.added=!this.added
+            if(this.added){
+                    this.addedshoees.push(this._id)
+                    localStorage.setItem("AddedShoes",JSON.stringify(this.addedshoees))
+                this.$emit('custom-event',1)
+            }
+            else{
+                let index = this.addedshoees.indexOf(this._id);
+                console.log(index)
+                if (index !== -1) {
+                    this.addedshoees.splice(index, 1);
+                                    }
+                if(this.addedshoees.length==0){
+                    localStorage.removeItem("AddedShoes")
+                }
+                else{
+                    localStorage.setItem("AddedShoes",JSON.stringify(this.addedshoees))
+                }
+                this.$emit('custom-event',-1)
+            }
         }
     },
     props:{
+        _id:String,
         picture:String,
         name:String,
         currentPrice:String,

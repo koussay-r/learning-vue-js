@@ -1,9 +1,9 @@
 <template>
   <div class="flex ">
-    <SideBar @custom-event="handleCustomEvent" :sidebar="sidebar" :class="sidebar? 'absolute lg:relative bg-white': ' hidden bg-white lg:block' " ></SideBar>
+    <SideBar @custom-event="handleCustomEvent" :sidebar="sidebar"  :class="sidebar? 'absolute lg:relative bg-white': ' hidden bg-white lg:block' " ></SideBar>
     <div class="w-full">
-      <NavBar @custom-event="handleCustomEvent" :sidebar="sidebar"></NavBar>
-      <MainComponent></MainComponent>
+      <NavBar @custom-event="handleCustomEvent" :cartCount="cartCount" :sidebar="sidebar"></NavBar>
+      <MainComponent @event="handleEvent" ></MainComponent>
     </div>
   </div>
 </template>
@@ -15,6 +15,7 @@ export default{
   data(){
     return{
       sidebar:false,
+      cartCount:localStorage.getItem("AddedShoes")==null?0:JSON.parse(localStorage.getItem("AddedShoes")).length
     }
   },
   components:{
@@ -24,8 +25,11 @@ export default{
   },
   methods:{
   handleCustomEvent(data) {
-    console.log(data)
-      this.sidebar = data; 
+    this.sidebar = data; 
+  }
+  ,
+  handleEvent(data) {
+      this.cartCount = this.cartCount+(data); 
     }
   }
 }

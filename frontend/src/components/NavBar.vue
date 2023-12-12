@@ -10,7 +10,12 @@
         </div>
         <div class="flex mt-1 gap-5">
             <img class="w-[26px] h-[26px] " :src="heart"/>
-            <img class="w-[26px] h-[26px] " :src="cart"/>
+            <div class="relative">
+                <div class="bg-red-500 absolute left-[16px] bottom-5 px-[7px]  text-[14px] rounded-full">
+                    {{ cartCount }}
+                </div>       
+                <img class="w-[26px] h-[26px] " :src="cart"/>
+            </div>
             <img class="w-[26px] h-[26px] " :src="profile"/>
         </div>
     </div>
@@ -25,7 +30,7 @@ export default{
             heart: heart,
             cart: cart,
             profile: profile,
-            sidebar:true
+            sidebar:true,
         }
     },
     inject: ['appContext'],
@@ -37,6 +42,9 @@ export default{
         console.log("hey")
     this.$emit('custom-event',this.sidebar)
   }
+  },
+  props:{
+    cartCount:Number
   }
 }
 </script>

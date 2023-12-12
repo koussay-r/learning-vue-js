@@ -68,7 +68,6 @@ import AllColors from "./../assets/Ellipse 1.png"
   },
   handleCloseOpen(){
     this.$emit('custom-event',this.sidebar);
-    
   }
 }
  }

@@ -24,7 +24,7 @@
             <img  class="block mx-auto" :src="nodata" alt="no data found" />  
         </div>
         <div v-else class="grid border-l-transparent h-[520px] xl:grid-cols-4 sm:grid-cols-2 pb-2 grid-cols-1 mx-auto md:grid-cols-3  2xl:grid-cols-5 p-3 gap-2 w-full overflow-auto border">
-            <ShoesCard  v-for="item in ShoesData" :picture="item.img" :name="item.title" :currentPrice="item.newPrice" :RecentPrice="item.prevPrice" :reviews="item.reviews" ></ShoesCard>
+            <ShoesCard @custom-event="handleCustomEvent"  v-for="item in ShoesData" :_id="item._id" :picture="item.img" :name="item.title" :currentPrice="item.newPrice" :RecentPrice="item.prevPrice" :reviews="item.reviews" ></ShoesCard>
         </div>
     </div>
 </template>
@@ -95,8 +95,9 @@ export default{
                         }
                     }
                 }
+            },handleCustomEvent(data){
+                this.$emit('event',data);
             }
-        
     },
     watch: {
     'appContext.name': function(newVal, oldVal) {
@@ -115,8 +116,7 @@ export default{
     },
   },
     components:{
-        ShoesCard:ShoesCard,
-        
+        ShoesCard:ShoesCard, 
     },
 
 }
